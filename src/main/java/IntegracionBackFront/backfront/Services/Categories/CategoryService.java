@@ -23,14 +23,6 @@ public class CategoryService {
     @Autowired
     private CategoryRepository repo;
 
-    public Page<CategoryDTO> getAllCategories(int page, int size) {
-        //Crear las páginas con los valores de los parámetros
-        Pageable pageable = PageRequest.of(page, size);
-        //Guardamos los datos en la pagina pageable
-        Page<CategoryEntity> pageEntity = repo.findAll(pageable);
-        return pageEntity.map(this::convertirADTO);
-    }
-
     public CategoryDTO insert(@Valid CategoryDTO jsonData) {
         if (jsonData == null){
             throw new IllegalArgumentException("La categoria no puede ser nula");
